@@ -7,8 +7,46 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="wrap">
+    <div class="container container-fluid">
+      <ul class="nav nav-tabs">
+        <li>
+          <%= link_to root_path do %>
+            <span class='glyphicon glyphicon-bookmark' style="font-size: 2em;"><b>BenMarks</b></span>
+          <% end %>
+        </li>
+        <div class="pull-right user-info">
+          <% if current_user %>
+            Hello <%= current_user.name || current_user.email %>!
+            <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
+              <span class="glyphicon glyphicon-user"></span>
+            <% end %>
 
-<%= yield %>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' do %>
+              <span class="glyphicon glyphicon-log-out"></span>
+            <% end %>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path %> or 
+            <%= link_to "Sign Up", new_user_registration_path %>
+          <% end %>
+        </div>
+      </ul>
+
+    <% flash.each do |type, message| %>
+      <div class="alert flash <%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+    <hr>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="container">
+      <p class="muted credit">&copy; Benjamin Simmons <%= Time.new.year %>.</p>
+    </div>
+  </div>
 
 </body>
 </html>
