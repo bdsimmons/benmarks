@@ -11,7 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609035512) do
+ActiveRecord::Schema.define(version: 20140611220656) do
+
+  create_table "benmark_topics", force: true do |t|
+    t.integer  "benmark_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "benmark_topics", ["benmark_id"], name: "index_benmark_topics_on_benmark_id"
+  add_index "benmark_topics", ["topic_id"], name: "index_benmark_topics_on_topic_id"
+
+  create_table "benmarks", force: true do |t|
+    t.string   "url"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "benmarks", ["user_id"], name: "index_benmarks_on_user_id"
+
+  create_table "likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "benmark_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["benmark_id"], name: "index_likes_on_benmark_id"
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id"
+
+  create_table "topics", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

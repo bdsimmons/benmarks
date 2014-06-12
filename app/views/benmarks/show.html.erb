@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @benmark.url %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @benmark.user %>
+</p>
+
+<%= link_to 'Edit', edit_benmark_path(@benmark) %> |
+<%= link_to 'Back', benmarks_path %>
