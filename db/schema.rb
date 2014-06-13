@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611220656) do
+ActiveRecord::Schema.define(version: 20140613054913) do
 
   create_table "benmark_topics", force: true do |t|
     t.integer  "benmark_id"
@@ -66,6 +66,9 @@ ActiveRecord::Schema.define(version: 20140611220656) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
