@@ -15,11 +15,11 @@ class IncomingController < ApplicationController
 
     Rails.logger.info ">>>>>>>>>>>>>>> #{subject}"
 
-    # subject = "#sporting, #Entertainment, #another#another"
+    topics = []
 
-    # subject.scan(/\B#([^,\#]+)/).each do |topic|
-    #   puts topic.to_s.downcase
-    # end
+    subject.scan(/\B#([^,\#]+)/).each do |topic|
+      topics.push(Topic.find_or_create_by(name: topic.to_s.downcase))
+    end
 
     # Assuming all went well. 
     head 200
