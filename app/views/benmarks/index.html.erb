@@ -1,29 +1,23 @@
 <h1>Listing benmarks</h1>
+<%= link_to 'New Benmark', new_benmark_path %>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Url</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @benmarks.each do |benmark| %>
       <tr>
-        <td><%= benmark.url %></td>
-        <td><%= benmark.user %></td>
-        <td><%= link_to 'Show', benmark %></td>
-        <td><%= link_to 'Edit', edit_benmark_path(benmark) %></td>
-        <td><%= link_to 'Destroy', benmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to benmark.url, benmark.url %></td>
+        <td><%= link_to 'Edit', edit_benmark_path(benmark) %>
+        <%= link_to 'Destroy', benmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Benmark', new_benmark_path %>

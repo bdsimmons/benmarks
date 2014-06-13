@@ -11,7 +11,7 @@
     <div class="container container-fluid">
       <ul class="nav nav-tabs">
         <li>
-          <%= link_to root_path do %>
+          <%= link_to current_user ? benmarks_path : root_path do %>
             <span class='glyphicon glyphicon-bookmark' style="font-size: 2em;"><b>BenMarks</b></span>
           <% end %>
         </li>

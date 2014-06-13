@@ -4,7 +4,7 @@ class BenmarksController < ApplicationController
   # GET /benmarks
   # GET /benmarks.json
   def index
-    @benmarks = Benmark.all
+    @benmarks = current_user.benmarks
   end
 
   # GET /benmarks/1
@@ -14,7 +14,7 @@ class BenmarksController < ApplicationController
 
   # GET /benmarks/new
   def new
-    @benmark = Benmark.new
+    @benmark = current_user.benmarks.new
   end
 
   # GET /benmarks/1/edit
@@ -24,7 +24,7 @@ class BenmarksController < ApplicationController
   # POST /benmarks
   # POST /benmarks.json
   def create
-    @benmark = Benmark.new(benmark_params)
+    @benmark = current_user.benmarks.new(benmark_params)
 
     respond_to do |format|
       if @benmark.save
@@ -69,6 +69,6 @@ class BenmarksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def benmark_params
-      params.require(:benmark).permit(:url, :user_id)
+      params.require(:benmark).permit(:url, :user_id, :topics[])
     end
 end
