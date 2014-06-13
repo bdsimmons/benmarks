@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'faker'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'figaro'
 
 group :doc do
   gem 'sdoc', require: false
