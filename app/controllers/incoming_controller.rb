@@ -6,10 +6,20 @@ class IncomingController < ApplicationController
   def create
     # Take a look at these in your server logs
     # to get a sense of what you're dealing with.
-    puts "INCOMING PARAMS HERE: #{params}"
+    #puts "INCOMING PARAMS HERE: #{params}"
 
     # You put the message-splitting and business
     # magic here. 
+
+    subject = params[:Subject]
+
+    Rails.logger.info ">>>>>>>>>>>>>>> #{subject}"
+
+    # subject = "#sporting, #Entertainment, #another#another"
+
+    # subject.scan(/\B#([^,\#]+)/).each do |topic|
+    #   puts topic.to_s.downcase
+    # end
 
     # Assuming all went well. 
     head 200
