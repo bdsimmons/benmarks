@@ -11,6 +11,7 @@ gem 'faker'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'figaro'
+gem 'omniauth-facebook'
 
 group :doc do
   gem 'sdoc', require: false
