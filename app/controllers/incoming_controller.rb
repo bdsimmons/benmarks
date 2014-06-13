@@ -18,8 +18,10 @@ class IncomingController < ApplicationController
     topics = []
 
     subject.scan(/\B#([^,\#]+)/).each do |topic|
-      topics.push(Topic.find_or_create_by(name: topic.to_s.downcase))
+      topics.push(Topic.find_or_create_by(name: topic[0].to_s.downcase))
     end
+
+    Rails.logger.info ">>>>>>>>> HERE ARE THE TOPCS >>>>>>>> #{topics}"
 
     # Assuming all went well. 
     head 200
