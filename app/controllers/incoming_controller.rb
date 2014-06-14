@@ -11,9 +11,9 @@ class IncomingController < ApplicationController
     # You put the message-splitting and business
     # magic here. 
 
+    user = User.find_by(email: params[:sender])
     subject = params[:Subject]
-
-    Rails.logger.info ">>>>>>>>>>>>>>> #{subject}"
+    content = params[:body-plain]
 
     topics = []
 
@@ -21,7 +21,8 @@ class IncomingController < ApplicationController
       topics.push(Topic.find_or_create_by(name: topic[0].to_s.downcase))
     end
 
-    Rails.logger.info ">>>>>>>>> HERE ARE THE TOPCS >>>>>>>> #{topics}"
+    Rails.logger.info ">>>>>>>>>>>>>> USER: #{user.inspect} <<<<<<<<<<<<<<<<<<<<<<"
+    Rails.logger.info ">>>>>>>>>>>>>> CONTENT HERE: #{content} <<<<<<<<<<<<<<<<<<<"
 
     # Assuming all went well. 
     head 200
