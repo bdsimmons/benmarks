@@ -24,13 +24,15 @@ class IncomingController < ApplicationController
 
     benmark = user.benmarks.build(url: url)
 
-    if benmark.save
-      # topics.each do |topic|
-      #   BenmarkTopic.create(benmark_id: benmark.id, topic_id: topic.id)
-      # end
-      head 200
-    else
-      head :no_content
-    end
+    Rails.logger.info benmark.inspect
+
+    # if benmark.save
+    #   # topics.each do |topic|
+    #   #   BenmarkTopic.create(benmark_id: benmark.id, topic_id: topic.id)
+    #   # end
+    head 200
+    # else
+    #   head :no_content
+    # end
   end
 end
