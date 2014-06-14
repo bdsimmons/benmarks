@@ -13,7 +13,7 @@ class IncomingController < ApplicationController
 
     user = User.find_by(email: params[:sender])
     subject = params[:Subject]
-    content = params[:body-plain]
+    content = params[:'body-plain']
 
     topics = []
 
