@@ -14,7 +14,7 @@ class IncomingController < ApplicationController
     user = User.find_by(email: params[:sender])
     subject = params[:subject]
     content = params[:'body-plain']
-    url = content.scan(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/)
+    url = content.scan(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/)[0].to_s
 
     topics = []
 
