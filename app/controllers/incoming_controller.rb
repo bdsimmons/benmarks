@@ -26,7 +26,8 @@ class IncomingController < ApplicationController
 
     Rails.logger.info benmark.inspect
 
-    # if benmark.save
+    benmark.save
+    Rails.logger.info Benmark.last
     #   # topics.each do |topic|
     #   #   BenmarkTopic.create(benmark_id: benmark.id, topic_id: topic.id)
     #   # end
