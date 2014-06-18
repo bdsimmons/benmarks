@@ -1,7 +1,8 @@
 Benmarks::Application.routes.draw do
-  resources :likes
 
-  resources :benmarks
+  resources :benmarks do
+    resources :likes
+  end
 
   resources :topics
 

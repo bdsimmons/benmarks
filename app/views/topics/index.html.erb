@@ -1,5 +1,9 @@
 <h1>Listing topics</h1>
 
+<% @benmarks.each do |benmark| %>
+
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -11,12 +15,12 @@
   </thead>
 
   <tbody>
-    <% @topics.each do |topic| %>
+    <% @benmarks.each do |benmark| %>
       <tr>
-        <td><%= topic.name %></td>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= benmark.url %></td>
+        <td><%= link_to 'Show', benmark %></td>
+        <td><%= link_to 'Edit', edit_benmark_path(benmark) %></td>
+        <td><%= link_to 'Destroy', benmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Topic', new_topic_path %>
+<%= link_to 'New Benmark', new_benmark_path %>

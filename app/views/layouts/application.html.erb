@@ -15,6 +15,7 @@
             <span class='glyphicon glyphicon-bookmark' style="font-size: 2em;"><b>BenMarks</b></span>
           <% end %>
         </li>
+        <li><%= link_to "My Benmarks", benmarks_path %></li>
         <div class="pull-right user-info">
           <% if current_user %>
             Hello <%= current_user.name || current_user.email %>!

@@ -4,12 +4,15 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+    @benmarks = current_user.benmarks
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @benmarks = @topic.benmarks
+    @likes = current_user.likes
+    @liked_benmark_ids = @likes.collect(&:benmark_id)
   end
 
   # GET /topics/new
@@ -25,7 +28,7 @@ class TopicsController < ApplicationController
   # POST /topics.json
   def create
     @topic = Topic.new(topic_params)
-
+    @topic.name.downcase!
     respond_to do |format|
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }

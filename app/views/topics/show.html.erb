@@ -1,9 +1,30 @@
-<p id="notice"><%= notice %></p>
+<h1>Listing benmarks</h1>
+<%= link_to 'New Benmark', new_benmark_path %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @topic.name %>
-</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+  <tbody>
+    <% @benmarks.each do |benmark| %>
+      <tr>
+        <td><%= link_to benmark.url, benmark.url %></td>
+        <td>
+          <% if @liked_benmark_ids.include?(benmark.id) %>
+            <%= link_to 'Unlike', benmark_like_path(benmark.id, 1), method: :delete, remote: true, class: "like-#{benmark.id}" %>
+          <% else %>
+            <%= link_to 'Like', benmark_likes_path(benmark.id), method: :post, remote: true, class: "like-#{benmark.id}" %>
+          <% end %>
+          <%= link_to 'Edit', edit_benmark_path(benmark) %>
+          <%= link_to 'Destroy', benmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

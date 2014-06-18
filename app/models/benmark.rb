@@ -6,4 +6,5 @@ class Benmark < ActiveRecord::Base
 
   validates :url, presence: true, length: { minimum: 1 }
   validates :user, presence: true
+
 end

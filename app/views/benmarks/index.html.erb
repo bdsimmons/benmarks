@@ -13,8 +13,15 @@
     <% @benmarks.each do |benmark| %>
       <tr>
         <td><%= link_to benmark.url, benmark.url %></td>
-        <td><%= link_to 'Edit', edit_benmark_path(benmark) %>
-        <%= link_to 'Destroy', benmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if @liked_benmark_ids.include?(benmark.id) %>
+            <%= link_to 'Unlike', benmark_like_path(benmark.id, 1), method: :delete, remote: true, class: "like-#{benmark.id}" %>
+          <% else %>
+            <%= link_to 'Like', benmark_likes_path(benmark.id), method: :post, remote: true, class: "like-#{benmark.id}" %>
+          <% end %>
+          <%= link_to 'Edit', edit_benmark_path(benmark) %>
+          <%= link_to 'Destroy', benmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
       </tr>
     <% end %>
   </tbody>

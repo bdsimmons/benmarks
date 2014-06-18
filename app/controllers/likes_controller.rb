@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :set_like, only: [:show, :edit, :update, :destroy]
+  before_action :set_like, only: [:show, :edit, :update]
 
   # GET /likes
   # GET /likes.json
@@ -24,15 +24,15 @@ class LikesController < ApplicationController
   # POST /likes
   # POST /likes.json
   def create
-    @like = Like.new(like_params)
+    @like = current_user.likes.build(like_params)
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to @like, notice: 'Like was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @like }
+        format.html { redirect_to benmarks_url, notice: 'Like was successfully created.' }
+        format.js
       else
         format.html { render action: 'new' }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -54,10 +54,12 @@ class LikesController < ApplicationController
   # DELETE /likes/1
   # DELETE /likes/1.json
   def destroy
+    @like = current_user.likes.where(benmark_id: params[:benmark_id]).first
+    Rails.logger.info ">>>>> #{@like.inspect}"
     @like.destroy
     respond_to do |format|
-      format.html { redirect_to likes_url }
-      format.json { head :no_content }
+      format.html { redirect_to benmarks_url }
+      format.js
     end
   end
 
@@ -69,6 +71,6 @@ class LikesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def like_params
-      params.require(:like).permit(:user_id, :benmark_id)
+      params.permit(:user_id, :benmark_id)
     end
 end

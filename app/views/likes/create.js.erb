@@ -1,0 +1,1 @@
+$(".like-" + <%= params[:benmark_id] %>).html('<%= link_to "Unlike", benmark_like_path(params[:benmark_id], 1), method: :delete, remote: true %>');

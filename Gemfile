@@ -12,6 +12,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'figaro'
 gem 'omniauth-facebook'
+gem 'embedly'
 
 group :doc do
   gem 'sdoc', require: false

@@ -1,10 +1,25 @@
 class BenmarksController < ApplicationController
   before_action :set_benmark, only: [:show, :edit, :update, :destroy]
 
+  def all
+    @benmarks = Benmark.all
+    @likes = current_user.likes
+    @liked_benmark_ids = @likes.collect(&:benmark_id)
+  end
+
   # GET /benmarks
   # GET /benmarks.json
   def index
     @benmarks = current_user.benmarks
+    @likes = current_user.likes
+    @liked_benmark_ids = @likes.collect(&:benmark_id)
+
+    # embedly = Embedly::API.new key: ENV['EMBEDLY_KEY']
+    # Rails.logger.info embedly.inspect
+    # obj = embedly.oembed url: @benmarks.first.url
+    # puts obj[0].marshal_dump
+    # json_obj = JSON.pretty_generate(obj[0].marshal_dump)
+    # puts json_obj
   end
 
   # GET /benmarks/1
@@ -69,6 +84,6 @@ class BenmarksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def benmark_params
-      params.require(:benmark).permit(:url, :user_id, :topics[])
+      params.require(:benmark).permit(:url, :user_id)
     end
 end

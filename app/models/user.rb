@@ -28,4 +28,12 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def topics
+    topics = []
+    self.benmarks.each do |benmark|
+      topics.push(benmark.topics).uniq
+    end
+    topics
+  end
 end
